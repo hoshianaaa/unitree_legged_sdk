@@ -41,3 +41,7 @@ target_link_libraries(udp_recv_test ${EXTRA_LIBS})
 # lcm server
 add_executable(lcm_server examples/lcm_server.cpp)
 target_link_libraries(lcm_server ${EXTRA_LIBS})
+
+#kbhit_walk
+add_executable(kbhit_walk0904 examples/kbhit_walk0904.cpp)
+target_link_libraries(kbhit_walk0904 ${EXTRA_LIBS})
