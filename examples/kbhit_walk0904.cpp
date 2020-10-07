@@ -11,7 +11,8 @@
 #include "simple_udp.h"
 //simple_udp udp0("192.168.1.233",5555);// usbイーサネット
 //simple_udp udp0("192.168.123.161",5555);// 内部イーサネット
-simple_udp udp0("192.168.1.244",5555);// wifi dongle
+//simple_udp udp0("192.168.1.244",5555);// wifi dongle
+simple_udp udp0("0.0.0.0",5555);// all ip adress
 
 using namespace UNITREE_LEGGED_SDK;
 using namespace std;
