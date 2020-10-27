@@ -104,7 +104,7 @@ int main()
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
 	      long timediff = getCurrentTime() - lasttime;
-              std::cout << "timediff:" << timediff << std::endl;
+              //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
 		cout << "timeout forward loop" << endl;
@@ -139,7 +139,7 @@ int main()
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
 	      long timediff = getCurrentTime() - lasttime;
-              std::cout << "timediff:" << timediff << std::endl;
+              //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
 		cout << "timeout back loop" << endl;
@@ -176,7 +176,7 @@ int main()
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
 	      long timediff = getCurrentTime() - lasttime;
-              std::cout << "timediff:" << timediff << std::endl;
+              //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
 		cout << "timeout left loop" << endl;
@@ -213,7 +213,7 @@ int main()
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
 	      long timediff = getCurrentTime() - lasttime;
-              std::cout << "timediff:" << timediff << std::endl;
+              //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
 		cout << "timeout right loop" << endl;
@@ -249,7 +249,7 @@ int main()
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
 	      long timediff = getCurrentTime() - lasttime;
-              std::cout << "timediff:" << timediff << std::endl;
+              //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
 		cout << "timeout clockwise loop" << endl;
@@ -286,7 +286,7 @@ int main()
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
 	      long timediff = getCurrentTime() - lasttime;
-              std::cout << "timediff:" << timediff << std::endl;
+              //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
 		cout << "timeout counterclockwise loop" << endl;
