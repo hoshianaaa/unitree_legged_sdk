@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <termios.h>
-#include <term.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "unitree_legged_sdk/unitree_legged_sdk.h"
