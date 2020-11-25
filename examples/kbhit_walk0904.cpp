@@ -19,11 +19,6 @@ using namespace std;
 
 const long TIMEOUT = 300;//この時間以上信号が送られない場合動作を停止する(ms)
 
-static struct termios initial_settings, new_settings;
-static int peek_character = -1;
-int kbhit();
-int readch();
-
 #include <sys/time.h>
 #include <cstdio>
 long getCurrentTime() {
