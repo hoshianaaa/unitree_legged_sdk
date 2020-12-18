@@ -40,7 +40,9 @@ public:
     void clockwise();
     void counterclockwise();
     void stand();
-
+    void face_up();
+    void face_down();
+    void down();
 
     Safety safe;
     UDP udp;
@@ -52,14 +54,14 @@ public:
 
 int main()
 {
-	int ch = 0;
-	std::string rdata;
+        int ch = 0;
+        std::string rdata;
         Custom custom(HIGHLEVEL);
         InitEnvironment();
-  	udp0.udp_bind();
+        udp0.udp_bind();
 
 
-	while(ch != 'q'){
+        while(ch != 'q'){
 //       printf("looping\n");
 
 
@@ -80,8 +82,8 @@ int main()
         if(ch == 'w'){
 
 
-	    printf("forward %c\n", ch);
-	    LoopFunc loop_control_forward("control_loop_for", custom.dt,    boost::bind(&Custom::forward, &custom));
+            printf("forward %c\n", ch);
+            LoopFunc loop_control_forward("control_loop_for", custom.dt,    boost::bind(&Custom::forward, &custom));
             LoopFunc loop_udpSend_forward("udp_send_for",  custom.dt, 3, boost::bind(&Custom::UDPSend, &custom));
             LoopFunc loop_udpRecv_forward("udp_recv_for",  custom.dt, 3, boost::bind(&Custom::UDPRecv, &custom));
 
@@ -89,26 +91,26 @@ int main()
             loop_udpRecv_forward.start();
             loop_control_forward.start();
 
-	    long lasttime = getCurrentTime();
+            long lasttime = getCurrentTime();
 
-	    while(ch == 'w'){
-	      sleep(0.002);
+            while(ch == 'w'){
+              sleep(0.002);
 
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
-	      long timediff = getCurrentTime() - lasttime;
+              long timediff = getCurrentTime() - lasttime;
               //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
-		cout << "timeout forward loop" << endl;
-	        ch = 'B';
-		break; 
-	      }
+                cout << "timeout forward loop" << endl;
+                ch = 'B';
+                break;
+              }
 
-	      if(ch != 'w'){
-		cout << "break forward loop" << endl;
-		break;
-	      }
+              if(ch != 'w'){
+                cout << "break forward loop" << endl;
+                break;
+              }
             }
         }
 
@@ -124,26 +126,26 @@ int main()
             loop_udpRecv_backward.start();
             loop_control_backward.start();
 
-	    long lasttime = getCurrentTime();
+            long lasttime = getCurrentTime();
 
-	    while(ch == 's'){
-	      sleep(0.002);
+            while(ch == 's'){
+              sleep(0.002);
 
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
-	      long timediff = getCurrentTime() - lasttime;
+              long timediff = getCurrentTime() - lasttime;
               //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
-		cout << "timeout back loop" << endl;
-	        ch = 'B';
-		break; 
-	      }
+                cout << "timeout back loop" << endl;
+                ch = 'B';
+                break;
+              }
 
-	      if(ch != 's'){
-		cout << "break back loop" << endl;
-		break;
-	      }
+              if(ch != 's'){
+                cout << "break back loop" << endl;
+                break;
+              }
             }
 
         }
@@ -161,26 +163,26 @@ int main()
             loop_control_left.start();
 
 
-	    long lasttime = getCurrentTime();
+            long lasttime = getCurrentTime();
 
-	    while(ch == 'a'){
-	      sleep(0.002);
+            while(ch == 'a'){
+              sleep(0.002);
 
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
-	      long timediff = getCurrentTime() - lasttime;
+              long timediff = getCurrentTime() - lasttime;
               //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
-		cout << "timeout left loop" << endl;
-	        ch = 'B';
-		break; 
-	      }
+                cout << "timeout left loop" << endl;
+                ch = 'B';
+                break;
+              }
 
-	      if(ch != 'a'){
-		cout << "break left loop" << endl;
-		break;
-	      }
+              if(ch != 'a'){
+                cout << "break left loop" << endl;
+                break;
+              }
             }
 
         }
@@ -198,26 +200,26 @@ int main()
             loop_udpRecv_right.start();
             loop_control_right.start();
 
-	    long lasttime = getCurrentTime();
+            long lasttime = getCurrentTime();
 
-	    while(ch == 'd'){
-	      sleep(0.002);
+            while(ch == 'd'){
+              sleep(0.002);
 
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
-	      long timediff = getCurrentTime() - lasttime;
+              long timediff = getCurrentTime() - lasttime;
               //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
-		cout << "timeout right loop" << endl;
-	        ch = 'B';
-		break; 
-	      }
+                cout << "timeout right loop" << endl;
+                ch = 'B';
+                break;
+              }
 
-	      if(ch != 'd'){
-		cout << "break right loop" << endl;
-		break;
-	      }
+              if(ch != 'd'){
+                cout << "break right loop" << endl;
+                break;
+              }
             }
 
         }
@@ -234,26 +236,26 @@ int main()
             loop_udpRecv_clockwise.start();
             loop_control_clockwise.start();
 
-	    long lasttime = getCurrentTime();
+            long lasttime = getCurrentTime();
 
-	    while(ch == 'x'){
-	      sleep(0.002);
+            while(ch == 'x'){
+              sleep(0.002);
 
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
-	      long timediff = getCurrentTime() - lasttime;
+              long timediff = getCurrentTime() - lasttime;
               //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
-		cout << "timeout clockwise loop" << endl;
-	        ch = 'B';
-		break; 
-	      }
+                cout << "timeout clockwise loop" << endl;
+                ch = 'B';
+                break;
+              }
 
-	      if(ch != 'x'){
-		cout << "break clockwise loop" << endl;
-		break;
-	      }
+              if(ch != 'x'){
+                cout << "break clockwise loop" << endl;
+                break;
+              }
             }
 
         }
@@ -271,33 +273,82 @@ int main()
             loop_udpRecv_counterclockwise.start();
             loop_control_counterclockwise.start();
 
-	    long lasttime = getCurrentTime();
+            long lasttime = getCurrentTime();
 
-	    while(ch == 'c'){
-	      sleep(0.002);
+            while(ch == 'c'){
+              sleep(0.002);
 
               if(udp0.udp_recv(rdata))lasttime = getCurrentTime();
 
-	      long timediff = getCurrentTime() - lasttime;
+              long timediff = getCurrentTime() - lasttime;
               //std::cout << "timediff:" << timediff << std::endl;
 
               if(timediff > TIMEOUT){
-		cout << "timeout counterclockwise loop" << endl;
-	        ch = 'B';
-		break; 
-	      }
+                cout << "timeout counterclockwise loop" << endl;
+                ch = 'B';
+                break;
+              }
 
-	      if(ch != 'c'){
-		cout << "break stand loop" << endl;
-		break;
-	      }
-            }
+              if(ch != 'c'){
+                cout << "break stand loop" << endl;
+                break;
+              }
+           }
         }
-       }
-       exit(0);
+
+        else if(ch == 'i'){
+            printf("face up %c\n", ch);
+            LoopFunc loop_control_face_up("control_loop_for", custom.dt,    boost::bind(&Custom::face_up, &custom));
+            LoopFunc loop_udpSend_face_up("udp_send_for",  custom.dt, 3, boost::bind(&Custom::UDPSend, &custom));
+            LoopFunc loop_udpRecv_face_up("udp_recv_for",  custom.dt, 3, boost::bind(&Custom::UDPRecv, &custom));
+
+            loop_udpSend_face_up.start();
+            loop_udpRecv_face_up.start();
+            loop_control_face_up.start();
+
+            while(ch == 'i'){
+              sleep(0.002);
+              if(udp0.udp_recv(rdata))ch = rdata[0];
+           }
+        }
+
+        else if(ch == 'k'){
+            printf("face down %c\n", ch);
+            LoopFunc loop_control_face_down("control_loop_for", custom.dt,    boost::bind(&Custom::face_down, &custom));
+            LoopFunc loop_udpSend_face_down("udp_send_for",  custom.dt, 3, boost::bind(&Custom::UDPSend, &custom));
+            LoopFunc loop_udpRecv_face_down("udp_recv_for",  custom.dt, 3, boost::bind(&Custom::UDPRecv, &custom));
+
+            loop_udpSend_face_down.start();
+            loop_udpRecv_face_down.start();
+            loop_control_face_down.start();
+
+            while(ch == 'k'){
+              sleep(0.002);
+              if(udp0.udp_recv(rdata))ch = rdata[0];
+           }
+        }
+
+        else if(ch == 'n'){
+            printf("down %c\n", ch);
+            LoopFunc loop_control_down("control_loop_for", custom.dt,    boost::bind(&Custom::down, &custom));
+            LoopFunc loop_udpSend_down("udp_send_for",  custom.dt, 3, boost::bind(&Custom::UDPSend, &custom));
+            LoopFunc loop_udpRecv_down("udp_recv_for",  custom.dt, 3, boost::bind(&Custom::UDPRecv, &custom));
+
+            loop_udpSend_down.start();
+            loop_udpRecv_down.start();
+            loop_control_down.start();
+
+            while(ch == 'n'){
+              sleep(0.002);
+              if(udp0.udp_recv(rdata))ch = rdata[0];
+           }
+        }
+
+
+     }
+     exit(0);
     return 0;
 }
-
 
 void Custom::UDPRecv()
 {
@@ -317,6 +368,7 @@ void Custom::forward()
     cmd.rotateSpeed = 0.0f;
     cmd.mode = 2;
     cmd.forwardSpeed = 0.2f;
+    //cmd.forwardSpeed = 0.5f;
     cmd.roll = 0;
     cmd.pitch = 0;
     cmd.yaw = 0;
@@ -384,8 +436,6 @@ void Custom::clockwise()
     udp.SetSend(cmd);
 }
 
-
-
 void Custom::counterclockwise()
 {
     udp.GetRecv(state);
@@ -406,35 +456,47 @@ void Custom::stand()
    udp.SetSend(cmd);
 }
 
-
-
-int kbhit()
+void Custom::face_up()
 {
-	char ch;
-	int nread;
-	if(peek_character != -1)
-		return 1;
-	new_settings.c_cc[VMIN]=0;
-	tcsetattr(0, TCSANOW, &new_settings);
-	nread = read(0,&ch,1);
-	new_settings.c_cc[VMIN]=1;
-	tcsetattr(0, TCSANOW, &new_settings);
-if(nread == 1){
-	peek_character = ch;
-	return 1;
-}
-return 0;
+   udp.GetRecv(state);
+   cmd.forwardSpeed = 0.0f;
+   cmd.sideSpeed = 0.0f;
+   cmd.rotateSpeed = 0.0f;
+   cmd.bodyHeight = 0.0f;
+
+   cmd.mode = 1;      // 0:idle, default stand      1:forced stand     2:walk continuously
+   cmd.roll  = 0;
+   cmd.pitch = 1.0f;
+   cmd.yaw = 0;
+   udp.SetSend(cmd);
 }
 
-
-int readch()
+void Custom::face_down()
 {
-	char ch;
-	if(peek_character != -1){
-	ch = peek_character;
-	peek_character = -1;
-	return ch;
+   udp.GetRecv(state);
+   cmd.forwardSpeed = 0.0f;
+   cmd.sideSpeed = 0.0f;
+   cmd.rotateSpeed = 0.0f;
+   cmd.bodyHeight = 0.0f;
+
+   cmd.mode = 1;      // 0:idle, default stand      1:forced stand     2:walk continuously
+   cmd.roll  = 0;
+   cmd.pitch = -1.0f;
+   cmd.yaw = 0;
+   udp.SetSend(cmd);
 }
-	read(0,&ch,1);
-	return ch;
+
+void Custom::down()
+{
+   udp.GetRecv(state);
+   cmd.forwardSpeed = 0.0f;
+   cmd.sideSpeed = 0.0f;
+   cmd.rotateSpeed = 0.0f;
+   cmd.bodyHeight = -1.0f;
+
+   cmd.mode = 1;      // 0:idle, default stand      1:forced stand     2:walk continuously
+   cmd.roll  = 0;
+   cmd.pitch = 0;
+   cmd.yaw = 0;
+   udp.SetSend(cmd);
 }
