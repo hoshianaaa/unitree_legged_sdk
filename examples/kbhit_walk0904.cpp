@@ -481,7 +481,7 @@ void Custom::face_down()
 
    cmd.mode = 1;      // 0:idle, default stand      1:forced stand     2:walk continuously
    cmd.roll  = 0;
-   cmd.pitch = -1.0f;
+   cmd.pitch = 1.0f;
    cmd.yaw = 0;
    udp.SetSend(cmd);
 }
