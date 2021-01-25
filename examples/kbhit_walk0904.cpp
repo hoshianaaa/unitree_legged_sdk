@@ -7,9 +7,6 @@
 #include <string.h>
 
 #include "simple_udp.h"
-//simple_udp udp0("192.168.1.233",5555);// usbイーサネット
-//simple_udp udp0("192.168.123.161",5555);// 内部イーサネット
-//simple_udp udp0("192.168.1.244",5555);// wifi dongle
 simple_udp udp0("0.0.0.0",5555);// all ip adress
 
 using namespace UNITREE_LEGGED_SDK;
@@ -466,7 +463,7 @@ void Custom::face_up()
 
    cmd.mode = 1;      // 0:idle, default stand      1:forced stand     2:walk continuously
    cmd.roll  = 0;
-   cmd.pitch = 1.0f;
+   cmd.pitch = -1.0f;
    cmd.yaw = 0;
    udp.SetSend(cmd);
 }
