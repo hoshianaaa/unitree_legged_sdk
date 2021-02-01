@@ -40,6 +40,8 @@ public:
     void face_up();
     void face_down();
     void down();
+    void ChangeSpeedLevel(int level);
+    float speed();
 
     Safety safe;
     UDP udp;
@@ -47,6 +49,8 @@ public:
     HighState state = {0};
     int motiontime = 0;
     float dt = 0.002;     // 0.001~0.01
+    //Speed(m/s) = SpeedLevel * 0.1(m/s)
+    int SpeedLevel = 2;
 };
 
 int main()
@@ -341,6 +345,16 @@ int main()
            }
         }
 
+	else if(ch == '0')custom.ChangeSpeedLevel(0);
+	else if(ch == '1')custom.ChangeSpeedLevel(1);
+	else if(ch == '2')custom.ChangeSpeedLevel(2);
+	else if(ch == '3')custom.ChangeSpeedLevel(3);
+	else if(ch == '4')custom.ChangeSpeedLevel(4);
+	else if(ch == '5')custom.ChangeSpeedLevel(5);
+	else if(ch == '6')custom.ChangeSpeedLevel(6);
+	else if(ch == '7')custom.ChangeSpeedLevel(7);
+	else if(ch == '8')custom.ChangeSpeedLevel(8);
+	else if(ch == '9')custom.ChangeSpeedLevel(9);
 
      }
      exit(0);
@@ -364,8 +378,7 @@ void Custom::forward()
     cmd.sideSpeed = 0.0f;
     cmd.rotateSpeed = 0.0f;
     cmd.mode = 2;
-    cmd.forwardSpeed = 0.2f;
-    //cmd.forwardSpeed = 0.5f;
+    cmd.forwardSpeed = speed();
     cmd.roll = 0;
     cmd.pitch = 0;
     cmd.yaw = 0;
@@ -378,7 +391,7 @@ void Custom::backward()
 {
     udp.GetRecv(state);
     cmd.mode = 2;
-    cmd.forwardSpeed = -0.2f;
+    cmd.forwardSpeed = -speed();
     cmd.sideSpeed = 0.0f;
     cmd.rotateSpeed = 0.0f;
     cmd.roll = 0;
@@ -394,7 +407,7 @@ void Custom::left()
 {
     udp.GetRecv(state);
     cmd.mode = 2;
-    cmd.sideSpeed = 0.2f;    //   side_speed
+    cmd.sideSpeed = speed();    //   side_speed
     cmd.forwardSpeed = 0.0f;
     cmd.rotateSpeed = 0.0f;
     cmd.roll = 0;
@@ -409,7 +422,7 @@ void Custom::right()
 {
     udp.GetRecv(state);
     cmd.mode = 2;
-    cmd.sideSpeed = -0.2f;    //   side_speed
+    cmd.sideSpeed = -speed();    //   side_speed
     cmd.forwardSpeed = 0.0f;
     cmd.rotateSpeed = 0.0f;
     cmd.roll = 0;
@@ -426,7 +439,7 @@ void Custom::clockwise()
     cmd.mode = 2;
     cmd.forwardSpeed = 0.0f;
     cmd.sideSpeed = 0.0f;
-    cmd.rotateSpeed = 0.2f;    //   rotate_speed
+    cmd.rotateSpeed = speed();    //   rotate_speed
     cmd.roll = 0;
     cmd.pitch = 0;
     cmd.yaw = 0;
@@ -439,7 +452,7 @@ void Custom::counterclockwise()
     cmd.mode = 2;
     cmd.forwardSpeed = 0.0f;
     cmd.sideSpeed = 0.0f;
-    cmd.rotateSpeed = -0.2f;
+    cmd.rotateSpeed = -speed();
     cmd.roll = 0;
     cmd.pitch = 0;
     cmd.yaw = 0;
@@ -496,4 +509,14 @@ void Custom::down()
    cmd.pitch = 0;
    cmd.yaw = 0;
    udp.SetSend(cmd);
+}
+
+void Custom::ChangeSpeedLevel(int level)
+{
+   SpeedLevel = level;   
+}
+
+float Custom::speed()
+{
+   return SpeedLevel * 0.1;
 }
